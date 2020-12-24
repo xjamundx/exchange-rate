@@ -1,0 +1,67 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: rgb(0 0 0 / 50%);
+  /* -webkit-text-stroke: 1px rgb(0 0 0 / 50%); */
+  /* -webkit-text-fill-color: transparent; */
+  font-family: "Orbitron", sans-serif;
+  background-image: linear-gradient(to right, red, #f06d06);
+}
+
+header {
+  color: rgb(0 0 0 / 50%);
+}
+
+.ExchangeRate-header {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.currencyCode {
+  background: none;
+  color: rgb(0 0 0 / 50%);
+  border-radius: 0.75em;
+  padding: 0.25em;
+  vertical-align: middle;
+}
+
+.ExchangeRate-table,
+.ExchangeRate-form {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.ExchangeRate-form input {
+  font-size: 2.8em;
+  background: none;
+  border: none;
+  font-family: "Orbitron", sans-serif;
+  color: rgb(0 0 0 / 50%);
+  text-align: center;
+  max-width: 100%;
+}
+
+.ExchangeRate-table td {
+  padding-bottom: 1em;
+}
+
+.ExchangeRate-table td:nth-of-type(1) {
+  padding-right: 2.5em;
+}
+
+.ExchangeRate-table td:nth-of-type(2) {
+  padding-left: 2.5em;
+}
+
+section {
+  padding: 1em;
+}
+section + section {
+  border-top: 1px solid rgba(50, 40, 0, 0.3);
+}
