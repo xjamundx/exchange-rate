@@ -6,10 +6,13 @@ body {
 
 body {
   color: rgb(0 0 0 / 50%);
-  /* -webkit-text-stroke: 1px rgb(0 0 0 / 50%); */
-  /* -webkit-text-fill-color: transparent; */
   font-family: "Orbitron", sans-serif;
-  background-image: linear-gradient(to right, red, #f06d06);
+  background-image: linear-gradient(
+    to bottom,
+    rgb(114, 114, 186),
+    rgb(170, 232, 232)
+  );
+  background-attachment: fixed;
 }
 
 header {
@@ -25,6 +28,7 @@ header {
 .currencyCode {
   background: none;
   color: rgb(0 0 0 / 50%);
+  border-color: rgb(0 0 0 / 50%);
   border-radius: 0.75em;
   padding: 0.25em;
   vertical-align: middle;

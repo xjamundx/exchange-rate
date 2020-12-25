@@ -19,7 +19,7 @@ export function ExchangeRate() {
     setAmount(newAmount);
   }
   return (
-    <main>
+    <>
       <section>
         <h1 className="ExchangeRate-header">
           Exchange Rates{" "}
@@ -36,6 +36,6 @@ export function ExchangeRate() {
       <section>
         <RateTable currencyData={currencyData} amount={amount} />
       </section>
-    </main>
+    </>
   );
 }
