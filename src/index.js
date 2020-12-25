@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import { ExchangeRate } from "./components/ExchangeRate";
+import { store } from "./store";
 import "./style.css";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <ExchangeRate />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById("root")
 );
