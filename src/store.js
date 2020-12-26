@@ -1,14 +1,6 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 
-const initialState = {
-  amount: "12.99",
-};
+import { rateReducer } from "./reducers/RateReducer";
 
-function rateReducer(state = initialState, action) {
-  if (action.type === "amountChanged") {
-    return { amount: action.payload };
-  }
-  return state;
-}
-
-export const store = createStore(rateReducer);
+export const store = createStore(rateReducer, applyMiddleware(thunk));
