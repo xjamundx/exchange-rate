@@ -1,5 +1,3 @@
-import { RateRow } from "./RateRow";
-
 export function RateTable({ currencyData, amount }) {
   return (
     <table className="ExchangeRate-table">
@@ -7,7 +5,17 @@ export function RateTable({ currencyData, amount }) {
         {Object.entries(currencyData).map(([code, rate]) => {
           // NOTE: normally avoid floating point math in JS
           const exchangeAmount = amount * rate || 0.0;
-          return <RateRow amount={exchangeAmount} code={code} />;
+          return (
+            <tr>
+              <td>{code}</td>
+              <td>
+                {exchangeAmount.toLocaleString("en", {
+                  style: "currency",
+                  currency: code,
+                })}
+              </td>
+            </tr>
+          );
         })}
       </tbody>
     </table>

@@ -1,19 +1,28 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { RateTable } from "./RateTable";
 import { CurrencyCodePicker } from "./CurrencyCodePicker";
-import { useCurrencyData } from "../hooks";
 import { AmountField } from "./AmountField";
+import { getExchangeRates } from "../api";
 
 const supportedSymbols = ["USD", "EUR", "JPY", "CAD", "GBP", "MXN"];
 
 export function ExchangeRate() {
-  const [amount, setAmount] = useState("0.0");
+  const [amount, setAmount] = useState("1.50");
   const [currencyCode, setCurrencyCode] = useState("USD");
-  const currencyData = useCurrencyData(currencyCode, supportedSymbols);
+  const [currencyData, setCurrencyData] = useState({ USD: 1.0 });
+
+  // fetch the exchange rates each time currency code changes
+  useEffect(() => {
+    getExchangeRates(currencyCode, supportedSymbols).then((rates) => {
+      setCurrencyData(rates);
+    });
+  }, [currencyCode]);
+
   const handleCurrencyCode = useCallback(
     (e) => setCurrencyCode(e.target.value),
     []
   );
+
   function handleAmountChange(e) {
     let newAmount = e.target.value;
     setAmount(newAmount);
