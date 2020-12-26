@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { getExchangeRates } from "../api";
 
 const initialState = {
@@ -29,4 +31,15 @@ export function updateCurrencyCode(currencyCode) {
       dispatch({ type: "ratesUpdates", payload: rates });
     });
   };
+}
+
+// custom hook
+export function useCurrencyData() {
+  const currencyCode = useSelector((state) => state.currencyCode);
+  const rates = useSelector((state) => state.rates);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(updateCurrencyCode(currencyCode));
+  }, []);
+  return rates;
 }

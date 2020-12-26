@@ -1,8 +1,10 @@
 import { RateTable } from "./RateTable";
 import { CurrencyCodePicker } from "./CurrencyCodePicker";
 import { AmountField } from "./AmountField";
+import { useCurrencyData } from "../reducers/RateReducer";
 
 export function ExchangeRate() {
+  const rates = useCurrencyData();
   return (
     <>
       <section>
@@ -14,7 +16,7 @@ export function ExchangeRate() {
         <AmountField />
       </section>
       <section>
-        <RateTable />
+        <RateTable rates={rates} />
       </section>
     </>
   );
