@@ -1,7 +1,15 @@
-# ExchangeRate App
+# Currency Exchange Calculator
 
-This app is being used to demonstrate how to use redux and react hooks.
+A simple currency exchange calculator built to demonstrate using redux with react hooks.
+
+### Setup
+
+`yarn` or `npm install` 
 
 ### Run It
 
-`yarn start`
+`yarn start` or `npm start`
+
+---
+
+This app was built using [Create React App](https://create-react-app.dev/) and relies on [exchangeratesapi.io](https://exchangeratesapi.io/).
