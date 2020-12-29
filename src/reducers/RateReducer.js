@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { getExchangeRates } from "../api";
 
 const initialState = {
@@ -23,7 +21,7 @@ export function rateReducer(state = initialState, action) {
 }
 
 // action creators
-export function updateCurrencyCode(currencyCode) {
+export function updateCurrencyCode(currencyCode = initialState.currencyCode) {
   return (dispatch, getState) => {
     const state = getState();
     const symbols = getSupportedSymbols(state);
