@@ -34,16 +34,10 @@ export function updateCurrencyCode(currencyCode) {
   };
 }
 
-// custom hook
-export function useCurrencyData() {
-  const currencyCode = useSelector(getCurrencyCode);
-  const rates = useSelector(getRates);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(updateCurrencyCode(currencyCode));
-  }, []);
-  return rates;
-}
+export const amountChanged = (amount) => ({
+  type: "rate/amountChanged",
+  payload: amount,
+});
 
 // selectors
 export const getCurrencyCode = (state) => state.rate.currencyCode;

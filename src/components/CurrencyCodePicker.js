@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   updateCurrencyCode,
@@ -6,9 +7,9 @@ import {
 } from "../reducers/RateReducer";
 
 export function CurrencyCodePicker() {
+  const dispatch = useDispatch();
   const currencyCode = useSelector(getCurrencyCode);
   const supportedSymbols = useSelector(getSupportedSymbols);
-  const dispatch = useDispatch();
   return (
     <select
       className="currencyCode"

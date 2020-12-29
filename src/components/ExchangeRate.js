@@ -1,10 +1,11 @@
+import { dispatch } from "react-redux";
 import { RateTable } from "./RateTable";
 import { CurrencyCodePicker } from "./CurrencyCodePicker";
 import { AmountField } from "./AmountField";
-import { useCurrencyData } from "../reducers/RateReducer";
+import { useEffect } from "react";
 
 export function ExchangeRate() {
-  const rates = useCurrencyData();
+  useEffect(() => {}, []);
   return (
     <>
       <section>
@@ -16,7 +17,7 @@ export function ExchangeRate() {
         <AmountField />
       </section>
       <section>
-        <RateTable rates={rates} />
+        <RateTable />
       </section>
     </>
   );

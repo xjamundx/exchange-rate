@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
-import { getAmount } from "../reducers/RateReducer";
+import { getAmount, getRates } from "../reducers/RateReducer";
 
-export function RateTable({ rates }) {
-  const amount = useSelector((state) => getAmount(state));
+export function RateTable() {
+  const amount = useSelector(getAmount);
+  const rates = useSelector(getRates);
   return (
     <table className="ExchangeRate-table">
       <tbody>
