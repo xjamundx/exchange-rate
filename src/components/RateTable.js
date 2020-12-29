@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
+import { getAmount } from "../reducers/RateReducer";
 
 export function RateTable({ rates }) {
-  const amount = useSelector((state) => state.amount);
+  const amount = useSelector((state) => getAmount(state));
   return (
     <table className="ExchangeRate-table">
       <tbody>
@@ -9,7 +10,7 @@ export function RateTable({ rates }) {
           // NOTE: normally avoid floating point math in JS
           const exchangeAmount = amount * rate || 0.0;
           return (
-            <tr>
+            <tr key={code}>
               <td>{code}</td>
               <td>
                 {exchangeAmount.toLocaleString("en", {

@@ -1,9 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
-import { updateCurrencyCode } from "../reducers/RateReducer";
+import {
+  updateCurrencyCode,
+  getCurrencyCode,
+  getSupportedSymbols,
+} from "../reducers/RateReducer";
 
 export function CurrencyCodePicker() {
-  const currencyCode = useSelector((state) => state.currencyCode);
-  const supportedSymbols = useSelector((state) => state.supportedSymbols);
+  const currencyCode = useSelector(getCurrencyCode);
+  const supportedSymbols = useSelector(getSupportedSymbols);
   const dispatch = useDispatch();
   return (
     <select
