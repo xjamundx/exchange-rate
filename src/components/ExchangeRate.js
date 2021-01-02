@@ -23,10 +23,11 @@ export function ExchangeRate() {
     []
   );
 
-  function handleAmountChange(e) {
+  const handleAmountChange = useCallback((e) => {
     let newAmount = e.target.value;
     setAmount(newAmount);
-  }
+  }, []);
+
   return (
     <>
       <section>
