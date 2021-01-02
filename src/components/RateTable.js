@@ -6,7 +6,7 @@ export function RateTable({ currencyData, amount }) {
           // NOTE: normally avoid floating point math in JS
           const exchangeAmount = amount * rate || 0.0;
           return (
-            <tr>
+            <tr key={code}>
               <td>{code}</td>
               <td>
                 {exchangeAmount.toLocaleString("en", {

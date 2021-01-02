@@ -1,6 +1,6 @@
 // helper to make our exchange rate API call
-export function getExchangeRates(base, supportedSymbols) {
-  const symbols = supportedSymbols
+export function getExchangeRates(base, supportedCurrencies) {
+  const symbols = supportedCurrencies
     .filter((symbol) => symbol !== base) // exclude your own code from requested symbols
     .join();
   const url = `https://api.exchangeratesapi.io/latest?base=${base}&symbols=${symbols}`;
