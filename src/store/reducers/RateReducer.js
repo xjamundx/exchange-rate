@@ -7,7 +7,7 @@ const initialState = {
   rates: {
     USD: 1.0,
   },
-  supportedSymbols: ["USD", "EUR", "JPY", "CAD", "GBP", "MXN"],
+  supportedCurrencies: ["USD", "EUR", "JPY", "CAD", "GBP", "MXN"],
 };
 
 // reducer
@@ -25,5 +25,6 @@ export function rateReducer(state = initialState, action) {
 // selectors
 export const getCurrencyCode = (state) => state.rates.currencyCode;
 export const getAmount = (state) => state.rates.amount;
-export const getSupportedSymbols = (state) => state.rates.supportedSymbols;
+export const getSupportedCurrencies = (state) =>
+  state.rates.supportedCurrencies;
 export const getRates = (state) => state.rates.rates;

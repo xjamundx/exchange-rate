@@ -1,18 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { updateCurrencyCode } from "../store/actions/RateActions";
-import { getCurrencyCode } from "../store/reducers/RateReducer";
+import { ratesUpdated } from "../store/actions/RateActions";
+import {
+  getCurrencyCode,
+  getSupportedCurrencies,
+} from "../store/reducers/RateReducer";
 import { RateTableContainer } from "./RateTable";
 import { CurrencyCodePickerContainer } from "./CurrencyCodePicker";
+import { getExchangeRates } from "../api";
 import { AmountFieldContainer } from "./AmountField";
 
 export class ExchangeRate extends React.Component {
   constructor(props) {
     super(props);
-
-    // fire off our AJAX call with the initial currency code
-    props.updateCurrencyCode(props.currencyCode);
+    this.getLatestExchangeRates();
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.currencyCode !== prevProps.currencyCode) {
+      this.getLatestExchangeRates();
+    }
+  }
+  getLatestExchangeRates() {
+    const { currencyCode, updateRates, supportedCurrencies } = this.props;
+    getExchangeRates(currencyCode, supportedCurrencies).then((rates) => {
+      updateRates(rates);
+    });
   }
   render() {
     return (
@@ -37,18 +50,19 @@ export class ExchangeRate extends React.Component {
 ExchangeRate.propTypes = {
   updateCurrencyCode: PropTypes.func,
   currencyCode: PropTypes.string,
+  supportedCurrencies: PropTypes.arrayOf(PropTypes.string),
 };
 
 // redux stuff
 function mapStateToProps(state) {
   return {
+    supportedCurrencies: getSupportedCurrencies(state),
     currencyCode: getCurrencyCode(state),
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    updateCurrencyCode: (currencyCode) =>
-      dispatch(updateCurrencyCode(currencyCode)),
+    updateRates: (rates) => dispatch(ratesUpdated(rates)),
   };
 }
 export const ExchangeRateContainer = connect(

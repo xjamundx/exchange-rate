@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
   getCurrencyCode,
-  getSupportedSymbols,
+  getSupportedCurrencies,
 } from "../store/reducers/RateReducer";
 import { updateCurrencyCode } from "../store/actions/RateActions";
 
@@ -25,7 +25,9 @@ export class CurrencyCodePicker extends React.Component {
         onChange={this.onChange}
       >
         {supportedSymbols.map((code) => (
-          <option value={code}>{code}</option>
+          <option key={code} value={code}>
+            {code}
+          </option>
         ))}
       </select>
     );
@@ -42,7 +44,7 @@ CurrencyCodePicker.propTypes = {
 function mapStateToProps(state) {
   return {
     currencyCode: getCurrencyCode(state),
-    supportedSymbols: getSupportedSymbols(state),
+    supportedSymbols: getSupportedCurrencies(state),
   };
 }
 
