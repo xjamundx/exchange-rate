@@ -5,7 +5,7 @@ import { rateReducer } from "./reducers/RateReducer";
 import { userReducer } from "./reducers/UserReducer";
 
 const rootReducer = combineReducers({
-  rate: rateReducer,
+  rates: rateReducer,
   user: userReducer,
 });
 

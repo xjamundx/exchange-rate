@@ -66,6 +66,13 @@ header {
 section {
   padding: 1em;
 }
-section + section {
+section + section,
+tfoot td {
   border-top: 1px solid rgba(50, 40, 0, 0.3);
+}
+
+tfoot td {
+  font-size: 0.8em;
+  margin-top: 1em;
+  padding-top: 1em;
 }

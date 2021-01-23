@@ -1,27 +1,57 @@
-import { useEffect } from "react";
-import { dispatch } from "react-redux";
-import { updateCurrencyCode } from "../reducers/RateReducer";
-import { RateTable } from "./RateTable";
-import { CurrencyCodePicker } from "./CurrencyCodePicker";
-import { AmountField } from "./AmountField";
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { updateCurrencyCode } from "../store/actions/RateActions";
+import { getCurrencyCode } from "../store/reducers/RateReducer";
+import { RateTableContainer } from "./RateTable";
+import { CurrencyCodePickerContainer } from "./CurrencyCodePicker";
+import { AmountFieldContainer } from "./AmountField";
 
-export function ExchangeRate() {
-  useEffect(() => {
-    dispatch(updateCurrencyCode());
-  }, []);
-  return (
-    <>
-      <section>
-        <h1 className="ExchangeRate-header">
-          Exchange Rates <CurrencyCodePicker />
-        </h1>
-      </section>
-      <section>
-        <AmountField />
-      </section>
-      <section>
-        <RateTable />
-      </section>
-    </>
-  );
+export class ExchangeRate extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // fire off our AJAX call with the initial currency code
+    props.updateCurrencyCode(props.currencyCode);
+  }
+  render() {
+    return (
+      <>
+        <section>
+          <h1 className="ExchangeRate-header">
+            Exchange Rates <CurrencyCodePickerContainer />
+          </h1>
+        </section>
+        <section>
+          <AmountFieldContainer />
+        </section>
+        <section>
+          <RateTableContainer />
+        </section>
+      </>
+    );
+  }
 }
+
+// props types
+ExchangeRate.propTypes = {
+  updateCurrencyCode: PropTypes.func,
+  currencyCode: PropTypes.string,
+};
+
+// redux stuff
+function mapStateToProps(state) {
+  return {
+    currencyCode: getCurrencyCode(state),
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    updateCurrencyCode: (currencyCode) =>
+      dispatch(updateCurrencyCode(currencyCode)),
+  };
+}
+export const ExchangeRateContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ExchangeRate);

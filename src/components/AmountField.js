@@ -1,16 +1,47 @@
-import { useSelector, useDispatch } from "react-redux";
-import { getAmount, amountChanged } from "../reducers/RateReducer";
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getAmount } from "../store/reducers/RateReducer";
+import { amountChanged } from "../store/actions/RateActions";
 
-export function AmountField() {
-  const dispatch = useDispatch();
-  const amount = useSelector(getAmount);
-  function onChange(e) {
-    let newAmount = e.target.value;
-    dispatch(amountChanged(newAmount));
+export class AmountField extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onChange = this.onChange.bind(this);
   }
-  return (
-    <form className="ExchangeRate-form">
-      <input type="text" value={amount} onChange={onChange} />
-    </form>
-  );
+  onChange(e) {
+    let newAmount = e.target.value;
+    this.props.changeAmount(newAmount);
+  }
+  render() {
+    return (
+      <form className="ExchangeRate-form">
+        <input type="text" value={this.props.amount} onChange={this.onChange} />
+      </form>
+    );
+  }
 }
+
+// prop types
+AmountField.propTypes = {
+  amount: PropTypes.string,
+  changeAmount: PropTypes.func,
+};
+
+// redux stuff
+function mapStateToProps(state) {
+  return {
+    amount: getAmount(state),
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    changeAmount: (newAmount) => dispatch(amountChanged(newAmount)),
+  };
+}
+
+export const AmountFieldContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AmountField);
