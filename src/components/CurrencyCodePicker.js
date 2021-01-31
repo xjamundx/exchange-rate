@@ -17,14 +17,14 @@ export class CurrencyCodePicker extends React.Component {
     this.props.currencyCodeUpdate(currencyCode);
   }
   render() {
-    const { currencyCode, supportedSymbols } = this.props;
+    const { currencyCode, supportedCurrencies } = this.props;
     return (
       <select
         className="currencyCode"
         value={currencyCode}
         onChange={this.onChange}
       >
-        {supportedSymbols.map((code) => (
+        {supportedCurrencies.map((code) => (
           <option key={code} value={code}>
             {code}
           </option>
@@ -36,7 +36,7 @@ export class CurrencyCodePicker extends React.Component {
 
 // prop types
 CurrencyCodePicker.propTypes = {
-  supportedSymbols: PropTypes.arrayOf(PropTypes.string),
+  supportedCurrencies: PropTypes.arrayOf(PropTypes.string),
   currencyCode: PropTypes.string,
 };
 
@@ -44,7 +44,7 @@ CurrencyCodePicker.propTypes = {
 function mapStateToProps(state) {
   return {
     currencyCode: getCurrencyCode(state),
-    supportedSymbols: getSupportedCurrencies(state),
+    supportedCurrencies: getSupportedCurrencies(state),
   };
 }
 
