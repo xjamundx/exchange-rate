@@ -12,20 +12,7 @@ import { getExchangeRates } from "../api";
 import { AmountField } from "./AmountField";
 
 export function ExchangeRate() {
-  const dispatch = useDispatch();
-  const supportedCurrencies = useSelector(getSupportedCurrencies);
-  const currencyCode = useSelector(getCurrencyCode);
-  const updateRates = (rates) => dispatch(ratesUpdated(rates));
-
-  useEffect(() => {
-    getLatestExchangeRates();
-  }, [currencyCode]);
-
-  function getLatestExchangeRates() {
-    getExchangeRates(currencyCode, supportedCurrencies).then((rates) => {
-      updateRates(rates);
-    });
-  }
+  useCurrencyCodes();
   return (
     <>
       <section>
@@ -41,4 +28,19 @@ export function ExchangeRate() {
       </section>
     </>
   );
+}
+
+function useCurrencyCodes() {
+  const dispatch = useDispatch();
+  const supportedCurrencies = useSelector(getSupportedCurrencies);
+  const currencyCode = useSelector(getCurrencyCode);
+  const updateRates = (rates) => dispatch(ratesUpdated(rates));
+  useEffect(() => {
+    getLatestExchangeRates();
+  }, [currencyCode]);
+  function getLatestExchangeRates() {
+    getExchangeRates(currencyCode, supportedCurrencies).then((rates) => {
+      updateRates(rates);
+    });
+  }
 }
