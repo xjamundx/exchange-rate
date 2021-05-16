@@ -9,7 +9,7 @@ export function ExchangeRate() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(updateCurrencyCode());
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <section>
