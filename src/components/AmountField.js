@@ -1,6 +1,5 @@
 import React, { useState, useMemo, useCallback } from "react";
-import PropTypes from "prop-types";
-import { connect, useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getAmount } from "../store/reducers/RateReducer";
 import { amountChanged } from "../store/actions/RateActions";
 import { debounce } from "lodash";
@@ -13,9 +12,10 @@ export function AmountField() {
     []
   );
   const [displayAmount, setDisplayAmount] = useState(amount);
-  const onAmountChanged = useMemo(() => debounce(changeAmount, 500), [
-    changeAmount,
-  ]);
+  const onAmountChanged = useMemo(
+    () => debounce(changeAmount, 500),
+    [changeAmount]
+  );
   function onChange(e) {
     let newAmount = e.target.value;
     setDisplayAmount(newAmount);
